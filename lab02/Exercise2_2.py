@@ -36,4 +36,4 @@ for j in uniquepdfSourcelinks:
     # extract file name
     filename = j[j.find('/')+1 : ]
     # save file
-    urllib.request.urlretrieve('http://engineering.usask.ca/ece/syllabi-CME.php/'+filename.replace(" ", "%20"), filename.replace("/", "_"))
+    urllib.request.urlretrieve('http://engineering.usask.ca/ece/syllabi-CME.php/documents/'+filename.replace(" ", "%20"), filename.replace("/", "_"))
