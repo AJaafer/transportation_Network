@@ -23,7 +23,7 @@ while (pdf > 0):
     # add the string in between to list
     pdflist.append(html_content[openingQuote:closingQuote])
     pdf = html_content.find('.pdf', closingQuote)
-	
+
 # remove duplicated items
 uniquepdfSourcelinks = list(set(pdflist))
 for eachlink in uniquepdfSourcelinks:
@@ -36,4 +36,4 @@ for j in uniquepdfSourcelinks:
     # extract file name
     filename = j[j.find('/')+1 : ]
     # save file
-    urllib.request.urlretrieve('http://engineering.usask.ca/ece/syllabi-CME.php/documents/'+filename.replace(" ", "%20"), filename.replace("/", "_"))
+    urllib.request.urlretrieve('http://engineering.usask.ca/ece/documents/'+filename.replace(" ", "%20"), filename.replace("/", "_"))
