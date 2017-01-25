@@ -22,7 +22,7 @@ while True:
     clientsocket, addr = serversocket.accept()
     print('Connection established.')
     try:
-        httpRequest=clientsocket.recv(2048).decode()
+        httpRequest=clientsocket.recv(200).decode()
         filename = httpRequest.split(' ')[1]
         sendback1 = 'HTTP/1.1'
         fd = open(filename[1:])
