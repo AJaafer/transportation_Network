@@ -15,8 +15,18 @@ TTL = int(IPPacketBin[64:72],2)
 
 Protocol = int(IPPacketBin[72:80],2)
 HeaderChecksum = int(IPPacketBin[80:96],2)
-SRC = int(IPPacketBin[96:128],2)
-DST = int(IPPacketBin[128:160],2)
+SRCList = []
+SRCList.append(str(int(IPPacketBin[96:104],2)))
+SRCList.append(str(int(IPPacketBin[104:112],2)))
+SRCList.append(str(int(IPPacketBin[112:120],2)))
+SRCList.append(str(int(IPPacketBin[120:128],2)))
+SRC =".".join(SRCList) 
+DSTList = []
+DSTList.append(str(int(IPPacketBin[128:136],2)))
+DSTList.append(str(int(IPPacketBin[136:144],2)))
+DSTList.append(str(int(IPPacketBin[144:152],2)))
+DSTList.append(str(int(IPPacketBin[152:160],2)))
+DST =".".join(DSTList) 
 Option = int(IPPacketBin[160:],2)
 
 IPPacketDict = {'Version' : Version , 'Hlen' : Hlen, 'TOS':TOS,'TotalLength':TotalLength,
