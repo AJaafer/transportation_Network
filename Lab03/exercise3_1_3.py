@@ -28,16 +28,16 @@ IPPacketDict = {'Version' : Version , 'Hlen' : Hlen, 'TOS':TOS,'TotalLength':Tot
 fd = open('IPPacketDict.html','w')
 html_content = []
 html_content.append("<!DOCTYPE html>\n<html>\n<head>\n<style>\ntable, th, td \n{ \n border: 1px solid black; \n border-collapse: collapse; \n}\n ")
-html_content.append("th, td \n{\npadding: 5px;\ntext-align: center;\n}\n</style>\n</head>\n<body>\n<table>\n")
+html_content.append("th, td \n{\npadding: 5px;\ntext-align: center;\n}\n</style>\n</head>\n<body>\n<table " + 'style="width:100%"'+ ">\n")
 
 for keys in IPPacketDict:
 	html_content.append("<tr>\n")
 	html_content.append("<th>")
 	html_content.append(str(keys))
 	html_content.append("</th>\n")
-	html_content.append("<th>")
+	html_content.append("<td>")
 	html_content.append(str(IPPacketDict[str(keys)]))
-	html_content.append("</th>\n")
+	html_content.append("</td>\n")
 	html_content.append("</tr>\n")
 	
 html_content.append("</table>\n</body>\n</html>")
