@@ -1,3 +1,4 @@
+import json
 IPPacket = input("Please type the IP Packet String: ")
 IPPacketLength = 4*len(IPPacket)
 IPPacketBin = bin(int(IPPacket,16))[2:].zfill(IPPacketLength)
@@ -22,11 +23,27 @@ IPPacketDict = {'Version' : Version , 'Hlen' : Hlen, 'TOS':TOS,'TotalLength':Tot
 				'Identification':Identification, 'Flags':Flags, 'FragOffset':FragOffset,
 				'TTL':TTL, 'Protocol':Protocol, 'HeaderChecksum':HeaderChecksum, 'SRC':SRC ,
 				'DST':DST,'Option':Option}
-print(IPPacketDict)
 
 
+fd = open('IPPacketDict.html','w')
+html_content = []
+html_content.append("<!DOCTYPE html>\n<html>\n<head>\n<style>\ntable, th, td \n{ \n border: 1px solid black; \n border-collapse: collapse; \n}\n ")
+html_content.append("th, td \n{\npadding: 5px;\ntext-align: center;\n}\n</style>\n</head>\n<body>\n<table>\n")
 
-
+for keys in IPPacketDict:
+	html_content.append("<tr>\n")
+	html_content.append("<th>")
+	html_content.append(str(keys))
+	html_content.append("</th>\n")
+	html_content.append("<th>")
+	html_content.append(str(IPPacketDict[str(keys)]))
+	html_content.append("</th>\n")
+	html_content.append("</tr>\n")
+	
+html_content.append("</table>\n</body>\n</html>")
+s = "".join(html_content)
+fd.write(s)
+fd.close()
 
 
 
