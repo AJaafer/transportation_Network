@@ -39,8 +39,11 @@ frag_data_length = mtu_d
 frag_offset = secondFrag['FRAGMENTATION OFFEST']
 fragDict = {'IDENTIFICATION': IDENTIFICATION, 'TOTAL LENGTH (IN BYTES)' : frag_data_length+20 ,
 				'FLAG':flag, 'FRAGMENTATION OFFEST': frag_offset,'DATA' : 'Bytes ' + str(frag_data_start) + '-' + str(frag_data_start+frag_data_length-1)}
-fragList.append(fragDict)
+
 frag_num = 1
+i=0
+del fragList[1]
+fragList.insert(1,fragDict)
 while (data_length > 0):
 	frag_offset = (mtu_d * frag_num / 8) +185
 	data_length = data_length - mtu_d
@@ -55,11 +58,11 @@ while (data_length > 0):
 	frag_num = frag_num + 1
 	fragDict = {'IDENTIFICATION': IDENTIFICATION, 'TOTAL LENGTH (IN BYTES)' : frag_data_length+20 ,
 				'FLAG':flag, 'FRAGMENTATION OFFEST': frag_offset,'DATA' : 'Bytes ' + str(frag_data_start) + '-' + str(frag_data_start+frag_data_length-1)}
-	fragList.append(fragDict)
+	fragList.insert(i+2,fragDict)
+	i=i+1
+	
 
-
-
-fd = open('Fragmentation.html','w')
+fd = open('Fragmentation_X25.html','w')
 html_content = []
 html_content.append("<!DOCTYPE html>\n<html>\n<head>\n<style>\ntable, th, td \n{ \n border: 1px solid black; \n border-collapse: collapse; \n}\n ")
 html_content.append("th, td \n{\npadding: 5px;\ntext-align: center;\n}\n</style>\n</head>\n<body>\n")
