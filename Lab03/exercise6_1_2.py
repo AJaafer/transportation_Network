@@ -1,3 +1,8 @@
+'''
+xingeng wang
+11144515
+xiw031
+'''
 TCPPacket = input("Please type the TCP Packet String: ")
 TCPPacketLength = 4*len(TCPPacket)
 
