@@ -1,3 +1,8 @@
+'''
+xingeng wang
+11144515
+xiw031
+'''
 EthernetPacket = input("Please type the Ethernet String: ")
 EthernetPacketLength = 4*len(EthernetPacket)
 EthernetPacketBin = bin(int(EthernetPacket,16))[2:].zfill(EthernetPacketLength)
