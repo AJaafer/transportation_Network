@@ -1,5 +1,15 @@
+'''
+xingeng wang
+11144515
+xiw031
+'''
+
 import socket
 import sys
+from Crypto.Hash import SHA
+from Crypto.PublicKey import RSA
+from Crypto import Random
+from Crypto.Cipher import AES
 # Create an AF_INET (IPv4), STREAM (TCP) socket
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 print('Socket created.')
@@ -15,10 +25,22 @@ print('Binding complete.')
 # Queue up to 5 requests
 serversocket.listen(5)
 print('Socket listening.')
+random_generator = Random.new().read
+server_key = RSA.generate(1024,random_generator)
+server_publickey = server_key.publickey()
 while True:
     # Establish a connection - blocking call
     clientsocket, addr = serversocket.accept()
     print('Connection established.')
-    t=clientsocket.recv(2048)
-    clientsocket.send(t)
+
+    clientsocket.send(server_publickey.exportKey())
+    symmetricKey = clientsocket.recv(2048)
+
+    decrypt_symmetricKey = server_key.decrypt(symmetricKey)
+    aes = AES.new(decrypt_symmetricKey, AES.MODE_ECB)
+    cipherText = clientsocket.recv(2048)
+
+    result = aes.decrypt(cipherText).decode()
+
+    print(result)
     clientsocket.close()
